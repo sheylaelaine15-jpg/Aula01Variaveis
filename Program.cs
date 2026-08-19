@@ -1,8 +1,7 @@
 ﻿//ALT, SHIFT + F --> Identação
 //Comentário teste comit Aula 03 
 using System;
-
-
+using System.Globalization;
 
 namespace Aula01Variaveis
 {
@@ -10,93 +9,224 @@ namespace Aula01Variaveis
     {
         static void Main(string[] args)
         {
-           //ConcatenarPalavras(); 
-           //CalcularMedia();
-           //CalcularTabuada();
-           VerificarAulaEtec();
-           
+            // Exibe o menu na tela
+            Console.WriteLine("Observe o menu abaixo e digite o número referente a opção desejada:");
+            Console.WriteLine("1 - Concatenar Palavras");
+            Console.WriteLine("2 - Verificar Dia da Semana");
+            Console.WriteLine("3 - Calcular Média");
+            Console.WriteLine("4 - Calcular Tabuada");
+            Console.WriteLine("5 - Detalhar Data");
+            Console.WriteLine("6 - Calcular Desconto INSS");
+
+            // Lê a opção escolhida pelo usuário
+            int opcaoEscolhida = int.Parse(Console.ReadLine());
+
+            // Direciona para o método correto
+            switch (opcaoEscolhida)
+            {
+                case 1:
+                    ConcatenarPalavras();
+                    break;
+
+                case 2:
+                    VerificarAulaEtec();
+                    break;
+
+                case 3:
+                    CalcularMedia();
+                    break;
+
+                case 4:
+                    CalcularTabuada();
+                    break;
+
+                case 5:
+                    DetalharData();
+                    break;
+
+                case 6:
+                    CalcularDescontoINSS();
+                    break;
+
+                default:
+                    Console.WriteLine("Opção inválida!");
+                    break;
+            }
         }
 
-        public static void VerificarAulaEtec()
-        {
-            Console.WriteLine("Digite a data");
-            DateTime data = DateTime.Parse(Console.ReadLine());
+        // MÉTODO 1 - CONCATENAR PALAVRAS
 
-            if (data.DayOfWeek == DayOfWeek.Saturday || data.DayOfWeek == DayOfWeek.Sunday)
+        static void ConcatenarPalavras()
+        {
+            Console.Clear();
+
+            Console.WriteLine("--- CONCATENAR PALAVRAS ---");
+
+            Console.Write("Digite a primeira palavra: ");
+            string p1 = Console.ReadLine();
+
+            Console.Write("Digite a segunda palavra: ");
+            string p2 = Console.ReadLine();
+
+            Console.WriteLine($"\nResultado da união: {p1} {p2}");
+
+            AguardarTecla();
+        }
+
+        // MÉTODO 2 - VERIFICAR AULA ETEC
+
+        static void VerificarAulaEtec()
+        {
+            Console.Clear();
+
+            Console.WriteLine("--- VERIFICAR DIA DA SEMANA ---");
+
+            Console.Write("Digite o dia da semana (ex: Segunda, Terça...): ");
+            string dia = Console.ReadLine().ToLower();
+
+            if (dia == "sábado" || dia == "sabado" || dia == "domingo")
             {
-                Console.WriteLine("Final de semana! Hoje não tem aula! Revisarei exercícios.");
+                Console.WriteLine("Fim de semana! Sem aulas na Etec.");
             }
             else
             {
-                Console.WriteLine("Dia da semana! Bora pra Etec!");
+                Console.WriteLine("Dia letivo! Tem aula na Etec.");
             }
+
+            AguardarTecla();
         }
 
-        public static void CalcularTabuada()
+        // MÉTODO 3 - CALCULAR MÉDIA
+
+        static void CalcularMedia()
         {
-            Console.WriteLine("Digite a Tabuada que deseja");
-            int Tabuada = int.Parse(Console.ReadLine());
-            int contador = 0;
+            Console.Clear();
 
-            while (contador <= 10)
+            Console.WriteLine("--- CALCULAR MÉDIA ---");
+
+            Console.Write("Digite a primeira nota: ");
+            double n1 = double.Parse(Console.ReadLine());
+
+            Console.Write("Digite a segunda nota: ");
+            double n2 = double.Parse(Console.ReadLine());
+
+            double media = (n1 + n2) / 2;
+
+            Console.WriteLine($"A média final é: {media:F2}");
+
+            AguardarTecla();
+        }
+
+        // MÉTODO 4 - CALCULAR TABUADA
+        
+
+        static void CalcularTabuada()
+        {
+            Console.Clear();
+
+            Console.WriteLine("--- CALCULAR TABUADA ---");
+
+            Console.Write("Digite um número para a tabuada: ");
+            int numero = int.Parse(Console.ReadLine());
+
+            for (int i = 1; i <= 10; i++)
             {
-                string mensagem = string.Format("{0} X {1} = {2}", Tabuada, contador, Tabuada * contador);
+                int resultado = numero * i;
 
-                Console.WriteLine(mensagem);
-                contador++;
+                Console.WriteLine($"{numero} x {i} = {resultado}");
             }
+
+            AguardarTecla();
         }
 
         
-        public static void CalcularMedia()
+        // MÉTODO 5 - DETALHAR DATA
+        
+
+        static void DetalharData()
         {
-            Console.WriteLine("Digite a primeira nota");
-            decimal nota1 = decimal.Parse(Console.ReadLine());
+            Console.Clear();
 
-            Console.WriteLine("Digite a segunda nota");
-            decimal nota2 = decimal.Parse(Console.ReadLine());
+            Console.WriteLine("--- DETALHAR DATA ---");
 
-            decimal media = (nota1 + nota2) / 2;
-            Console.WriteLine($"A média é {media}");
+            Console.Write("Digite uma data (dd/MM/yyyy): ");
+            DateTime data = DateTime.Parse(Console.ReadLine());
 
-            if (media >= 7)
-                Console.WriteLine("Aprovado");
-            else if (media < 7 && media >= 4)
-                Console.WriteLine("Recuperação");
-            else
-                Console.WriteLine("Reprovado");
+            // Mostra o dia da semana, dia e mês por extenso
+            string diaSemana = data.ToString("dddd", new CultureInfo("pt-BR"));
+            string mes = data.ToString("MMMM", new CultureInfo("pt-BR"));
+
+            Console.WriteLine();
+            Console.WriteLine($"Dia da semana: {diaSemana}");
+            Console.WriteLine($"Dia: {data.Day}");
+            Console.WriteLine($"Mês: {mes}");
+
+            // Se for domingo, mostra a hora atual
+            if (data.DayOfWeek == DayOfWeek.Sunday)
+            {
+                Console.WriteLine($"Hora atual: {DateTime.Now:HH:mm}");
+            }
+
+            AguardarTecla();
         }
 
+        
+        // MÉTODO 6 - CALCULAR DESCONTO INSS
+        
 
-        public static void ConcatenarPalavras()
+        static void CalcularDescontoINSS()
         {
+            Console.Clear();
 
-             Console.WriteLine("Digite o seu nome");
-            string nome = Console.ReadLine();
+            Console.WriteLine("--- CALCULAR DESCONTO INSS ---");
 
-            string frase1 = $"Olá {nome}, hoje é {DateTime.Now}";
-            Console.WriteLine(frase1);
-            Console.WriteLine("==============================");
+            Console.Write("Digite o valor do salário: R$ ");
+            decimal salario = decimal.Parse(Console.ReadLine());
 
-            Console.WriteLine("Quanto custa um dólar em reais?");
-            decimal valorDolarReais = decimal.Parse(Console.ReadLine());
+            decimal desconto;
 
-            string frase2 = string.Format(
-                "Hoje é {0:dd/MM/yyyy}, o dólar está custando {1:c2}",
-                DateTime.Now,
-                valorDolarReais
-            );
+            if (salario <= 1621.00m)
+            {
+                desconto = salario * 0.075m;
+            }
+            else if (salario <= 2902.84m)
+            {
+                desconto = (salario * 0.09m) - 24.32m;
+            }
+            else if (salario <= 4354.27m)
+            {
+                desconto = (salario * 0.12m) - 111.40m;
+            }
+            else
+            {
+                desconto = (salario * 0.14m) - 198.49m;
 
-            Console.WriteLine(frase2);
-            Console.WriteLine("==============================");
+                // Limite máximo do desconto
+                if (desconto > 988.09m)
+                {
+                    desconto = 988.09m;
+                }
+            }
 
-            string cabecalho = string.Format(
-                "{0:dddd}, {0:dd} de {0:MMMM} de {0:yy} - {0:HH:mm:ss}",
-                DateTime.Now
-            );
+            decimal salarioLiquido = salario - desconto;
 
-            Console.WriteLine(cabecalho);
+            Console.WriteLine();
+            Console.WriteLine($"Salário informado: R$ {salario:F2}");
+            Console.WriteLine($"Desconto do INSS: R$ {desconto:F2}");
+            Console.WriteLine($"Salário após o desconto: R$ {salarioLiquido:F2}");
+
+            AguardarTecla();
+        }
+
+        
+        // MÉTODO AUXILIAR
+        
+
+        static void AguardarTecla()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Pressione qualquer tecla para voltar...");
+            Console.ReadKey();
         }
     }
 }
-

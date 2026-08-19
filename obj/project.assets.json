@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Sheyla Mobile\\Aula03\\Aula01Variaveis\\Aula01Variaveis.csproj",
+      "projectUniqueName": "D:\\Sheyla Mobile - Copia\\Aula03\\Aula01Variaveis\\Aula01Variaveis.csproj",
       "projectName": "Aula01Variaveis",
-      "projectPath": "D:\\Sheyla Mobile\\Aula03\\Aula01Variaveis\\Aula01Variaveis.csproj",
+      "projectPath": "D:\\Sheyla Mobile - Copia\\Aula03\\Aula01Variaveis\\Aula01Variaveis.csproj",
       "packagesPath": "D:\\NugetPackages",
-      "outputPath": "D:\\Sheyla Mobile\\Aula03\\Aula01Variaveis\\obj\\",
+      "outputPath": "D:\\Sheyla Mobile - Copia\\Aula03\\Aula01Variaveis\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
